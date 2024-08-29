@@ -1,10 +1,14 @@
 name: Run Regression Tests
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-  workflow_dispatch:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   run-regression-tests:
@@ -23,5 +27,5 @@ jobs:
       - name: Install Maven
         run: sudo apt-get install -y maven
 
-      - name: Run regression tests
+      - name: Run regression tests in headless mode
         run: mvn clean test -Dtest.groups=regression -Dheadless=true
