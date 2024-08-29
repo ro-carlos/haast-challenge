@@ -1,22 +1,18 @@
 name: Run Regression Tests
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
     types:
-      - closed
+      - opened
+      - synchronize
+      - reopened
   workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   run-regression-tests:
     runs-on: ubuntu-latest
-
-    # Conditional execution based on PR merge status or direct push to main
-    if: github.event.pull_request.merged == true || github.event_name == 'push'
 
     steps:
       - name: Checkout code
