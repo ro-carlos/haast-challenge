@@ -82,6 +82,17 @@ public class LoginPage extends BasePage {
 	}
 
 	/**
+	 * Checks if the login button is visible
+	 *
+	 * @return boolean indicating visibility of the login button
+	 */
+	public boolean isLoginButtonVisible() {
+		getLogger().info("Checking if login button is visible");
+		getReportsLogger().log(LogStatus.INFO, "Checking if login button is visible");
+		return getActions().isElementPresent(loginButton);
+	}
+
+	/**
 	 * Retrieves error text
 	 *
 	 * @return {@link String}
