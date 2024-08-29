@@ -1,4 +1,4 @@
-name: Run Regression Tests on Main Branch
+name: Run Regression Tests
 
 on:
   push:

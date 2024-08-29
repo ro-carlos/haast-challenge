@@ -1,5 +1,6 @@
 package com.challenge.pages.inventory;
 
+import com.challenge.pages.navBar.NavbarPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -131,6 +132,17 @@ public class InventoryPage extends BasePage {
 		getLogger().info("Returning shopping cart link");
 		getReportsLogger().log(LogStatus.INFO,"Returning shopping cart link");
 		return getActions().getText(shoppingCart);
+	}
+
+	/**
+	 * Retrieves navbar instance
+	 *
+	 * @return {@link NavbarPage}
+	 */
+	public NavbarPage getNavbar(){
+		getLogger().info("Getting home page navbar");
+		getReportsLogger().log(LogStatus.INFO,"Getting home page navbar");
+		return new NavbarPage(getDriver(), getWait(), getReportsLogger());
 	}
 
 
