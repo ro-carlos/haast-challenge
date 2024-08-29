@@ -4,11 +4,19 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   run-regression-tests:
     runs-on: ubuntu-latest
+
+    # Conditional execution based on PR merge status or direct push to main
+    if: github.event.pull_request.merged == true || github.event_name == 'push'
 
     steps:
       - name: Checkout code
@@ -23,5 +31,5 @@ jobs:
       - name: Install Maven
         run: sudo apt-get install -y maven
 
-      - name: Run regression tests
+      - name: Run regression tests in headless mode
         run: mvn clean test -Dtest.groups=regression -Dheadless=true
